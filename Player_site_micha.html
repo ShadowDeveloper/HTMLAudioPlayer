@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Player Teste</title>
+</head>
+
+<body>
+
+  <audio id="audio_player" preload="auto" tabindex="0" controls="">
+    <source src="./mp3/1.mp3">
+    <source src="./mp3/2.mp3">
+  </audio>
+
+  <script>
+
+    var elem_player = document.getElementById("audio_player");
+    var elem_sources = document.querySelectorAll("#audio_player > source");
+
+    elem_player.addEventListener("ended", myScript);
+
+    function myScript() {
+      console.log("dasdasd");
+      for (var i = 0; i < elem_sources.length; i++) {
+        // elem_player.src = elem_sources[i].src;
+        // elem_player.pause();
+        // elem_player.load();
+        // elem_player.play();
+
+        // Show loading animation.
+        var playPromise = elem_player.play();
+        if (playPromise !== undefined) {
+          elem_player.pause();
+          elem_player.src = elem_sources[i].src;
+          elem_player.load();
+          elem_player.play();
+          // playPromise.then(_ => {
+          //   setTimeout(function () {
+          //     console.log(elem_sources[i].src);
+          //   }, 1000);
+
+          // Automatic playback started!
+          // Show playing UI.
+          // })
+          //   .catch(error => {
+          // Auto-play was prevented
+          // Show paused UI.
+          // });
+        }
+
+
+      }
+    }
+
+  </script>
+
+</body>
+
+</html>
